@@ -1,4 +1,4 @@
-# Voss Studio Client Platform
+# STUDIO 37 Client Platform
 
 Premium, conversion-first template with a marketing site, AI concierge UI, and an admin command center.
 
