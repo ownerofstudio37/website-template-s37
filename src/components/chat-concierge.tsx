@@ -35,10 +35,21 @@ export function ChatConcierge() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: nextMessages })
       });
+      
       const data = await response.json();
+      
+      // Handle both successful responses and error responses
+      const replyContent = data.reply || data.error || "I'm having trouble connecting. Please try again.";
+      
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.reply }
+        { role: "assistant", content: replyContent }
+      ]);
+    } catch (error) {
+      console.error("Chat error:", error);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "Sorry, I encountered an error. Please refresh and try again." }
       ]);
     } finally {
       setLoading(false);

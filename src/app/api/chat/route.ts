@@ -41,12 +41,11 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Chat API error:", error);
 
-    return NextResponse.json(
-      {
-        error: "Failed to process message",
-        details: error instanceof Error ? error.message : "Unknown error"
-      },
-      { status: 500 }
-    );
+    // Return a fallback response instead of an error
+    return NextResponse.json({
+      reply: "I'm experiencing technical difficulties. The Gemini API key may not be configured in your environment. Please add GEMINI_API_KEY to your Netlify environment variables. For now, I can still help - what would you like to know?",
+      fallback: true,
+      error: error instanceof Error ? error.message : "Unknown error"
+    });
   }
 }
