@@ -4,10 +4,9 @@ export type EmailCampaign = {
   subject: string;
   status: "draft" | "scheduled" | "sent" | "active";
   recipients: number;
-  opened: number;
-  clicked: number;
-  sentDate?: string;
-  scheduledDate?: string;
+  openRate: number;
+  clickRate: number;
+  sendDate: string;
 };
 
 export type SMSCampaign = {
@@ -16,9 +15,9 @@ export type SMSCampaign = {
   message: string;
   status: "draft" | "scheduled" | "sent";
   recipients: number;
-  delivered: number;
-  replied: number;
-  sentDate?: string;
+  deliveryRate: number;
+  replyRate: number;
+  sendDate: string;
 };
 
 export const mockEmailCampaigns: EmailCampaign[] = [
@@ -28,9 +27,9 @@ export const mockEmailCampaigns: EmailCampaign[] = [
     subject: "Your Monthly Platform Updates 🚀",
     status: "sent",
     recipients: 2450,
-    opened: 1862,
-    clicked: 734,
-    sentDate: "2026-02-15",
+    openRate: 76,
+    clickRate: 30,
+    sendDate: "2026-02-15",
   },
   {
     id: "2",
@@ -38,9 +37,9 @@ export const mockEmailCampaigns: EmailCampaign[] = [
     subject: "Introducing Our New Features",
     status: "scheduled",
     recipients: 3200,
-    opened: 0,
-    clicked: 0,
-    scheduledDate: "2026-03-01",
+    openRate: 0,
+    clickRate: 0,
+    sendDate: "2026-03-01",
   },
   {
     id: "3",
@@ -48,9 +47,9 @@ export const mockEmailCampaigns: EmailCampaign[] = [
     subject: "We miss you! Here's 20% off",
     status: "active",
     recipients: 892,
-    opened: 445,
-    clicked: 178,
-    sentDate: "2026-02-22",
+    openRate: 50,
+    clickRate: 20,
+    sendDate: "2026-02-22",
   },
 ];
 
@@ -61,9 +60,9 @@ export const mockSMSCampaigns: SMSCampaign[] = [
     message: "Reminder: Your consultation is tomorrow at 10 AM. Reply Y to confirm.",
     status: "sent",
     recipients: 45,
-    delivered: 44,
-    replied: 38,
-    sentDate: "2026-02-25",
+    deliveryRate: 98,
+    replyRate: 85,
+    sendDate: "2026-02-25",
   },
   {
     id: "2",
@@ -71,8 +70,9 @@ export const mockSMSCampaigns: SMSCampaign[] = [
     message: "🔥 24h Flash Sale! Use code SAVE20 for 20% off. Shop now: [link]",
     status: "scheduled",
     recipients: 1200,
-    delivered: 0,
-    replied: 0,
+    deliveryRate: 0,
+    replyRate: 0,
+    sendDate: "2026-02-28",
   },
 ];
 
@@ -82,7 +82,10 @@ export type ClientPortalUser = {
   email: string;
   company: string;
   role: "owner" | "admin" | "member";
+  status: "active" | "inactive";
+  createdAt: string;
   lastLogin: string;
+  loginCount: number;
   activeProjects: number;
   files: number;
 };
@@ -94,7 +97,10 @@ export const mockPortalUsers: ClientPortalUser[] = [
     email: "sarah@techstartup.io",
     company: "TechStartup Inc",
     role: "owner",
+    status: "active",
+    createdAt: "2025-10-15",
     lastLogin: "2026-02-26",
+    loginCount: 42,
     activeProjects: 1,
     files: 24,
   },
@@ -104,7 +110,10 @@ export const mockPortalUsers: ClientPortalUser[] = [
     email: "emily@ecommerce.shop",
     company: "EcoCommerce",
     role: "owner",
+    status: "active",
+    createdAt: "2025-09-22",
     lastLogin: "2026-02-25",
+    loginCount: 38,
     activeProjects: 1,
     files: 18,
   },
@@ -114,7 +123,10 @@ export const mockPortalUsers: ClientPortalUser[] = [
     email: "lisa@healthtech.co",
     company: "HealthTech Solutions",
     role: "owner",
+    status: "active",
+    createdAt: "2025-11-03",
     lastLogin: "2026-02-24",
+    loginCount: 51,
     activeProjects: 1,
     files: 31,
   },
