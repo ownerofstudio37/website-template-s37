@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { LayoutProvider } from "@/components/layout-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"),
@@ -42,9 +43,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+        <LayoutProvider>
+          <SiteHeader />
+          <main>{children}</main>
+          <SiteFooter />
+        </LayoutProvider>
       </body>
     </html>
   );
